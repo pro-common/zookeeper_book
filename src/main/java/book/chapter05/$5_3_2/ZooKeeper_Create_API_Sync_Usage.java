@@ -1,5 +1,6 @@
 package book.chapter05.$5_3_2;
 import java.util.concurrent.CountDownLatch;
+
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
@@ -17,18 +18,21 @@ public class ZooKeeper_Create_API_Sync_Usage implements Watcher {
 				5000, //
 				new ZooKeeper_Create_API_Sync_Usage());
         connectedSemaphore.await();
+        //创建临时节点-EPHEMERAL
         String path1 = zookeeper.create("/zk-test-ephemeral-", 
         		"".getBytes(), 
         		Ids.OPEN_ACL_UNSAFE, 
         		CreateMode.EPHEMERAL);
         System.out.println("Success create znode: " + path1);
-
+        //临时顺序节点-EPHEMERAL_SEQUENTIAL
         String path2 = zookeeper.create("/zk-test-ephemeral-", 
         		"".getBytes(), 
         		Ids.OPEN_ACL_UNSAFE,
                 CreateMode.EPHEMERAL_SEQUENTIAL);
         System.out.println("Success create znode: " + path2);
     }
+    
+    @Override
     public void process(WatchedEvent event) {
         if (KeeperState.SyncConnected == event.getState()) {
             connectedSemaphore.countDown();

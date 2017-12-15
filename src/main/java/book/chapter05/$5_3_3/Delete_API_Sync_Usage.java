@@ -27,6 +27,7 @@ public class Delete_API_Sync_Usage implements Watcher {
     	
     	Thread.sleep( Integer.MAX_VALUE );
     }
+    
     @Override
     public void process(WatchedEvent event) {
         if (KeeperState.SyncConnected == event.getState()) {
