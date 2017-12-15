@@ -1,0 +1,32 @@
+.idea/
+*.iml
+
+# Gradle work
+.gradle
+build
+classes
+.classpath
+.settings/
+.project
+
+# Maven work
+target
+
+# IntelliJ IDEA work
+*.idea
+*.iml
+*.ipr
+*.iws
+atlassian-ide-plugin.xml
+
+# Android
+local.properties
+
+# Mac OS X
+.DS_Store
+
+# Except .gitignore
+!.gitignore
+/bin/
+*_cache
+*.lock
