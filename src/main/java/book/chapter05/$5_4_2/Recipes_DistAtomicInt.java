@@ -13,6 +13,7 @@ public class Recipes_DistAtomicInt {
     static CuratorFramework client = CuratorFrameworkFactory.builder()
             .connectString("domain1.book.zookeeper:2181")
             .retryPolicy(new ExponentialBackoffRetry(1000, 3)).build();
+    
 	public static void main( String[] args ) throws Exception {
 		client.start();
 		DistributedAtomicInteger atomicInteger = 

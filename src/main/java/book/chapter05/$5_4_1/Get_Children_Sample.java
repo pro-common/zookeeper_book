@@ -12,6 +12,7 @@ public class Get_Children_Sample {
 
     	String path = "/zk-book";
         ZkClient zkClient = new ZkClient("domain1.book.zookeeper:2181", 5000);
+        //注册监听（因ZkClient没有提供Watcher注册的API，引入的是 Listener的概念）
         zkClient.subscribeChildChanges(path, new IZkChildListener() {
             public void handleChildChange(String parentPath, List<String> currentChilds) throws Exception {
                 System.out.println(parentPath + " 's child changed, currentChilds:" + currentChilds);

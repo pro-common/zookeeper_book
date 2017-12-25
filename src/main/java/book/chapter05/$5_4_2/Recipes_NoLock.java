@@ -3,6 +3,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.CountDownLatch;
 
+/*一个典型时间戳生成的并发问题*/
 public class Recipes_NoLock {
 
 	public static void main(String[] args) throws Exception {

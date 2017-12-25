@@ -75,6 +75,7 @@
 
 	<dependencyManagement>
 		<dependencies>
+			<!-- 开源客户端 :ZkClient -->
 			<dependency>
 				<groupId>org.apache.zookeeper</groupId>
 				<artifactId>zookeeper</artifactId>
@@ -85,6 +86,7 @@
 				<artifactId>zkclient</artifactId>
 				<version>${zkclient.version}</version>
 			</dependency>
+			<!-- 开源客户端 :curator -->
 			<dependency>
 				<groupId>org.apache.curator</groupId>
 				<artifactId>curator-framework</artifactId>

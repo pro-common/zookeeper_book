@@ -7,7 +7,9 @@ import org.apache.curator.retry.ExponentialBackoffRetry;
 //使用Fluent风格的API接口来创建一个ZooKeeper客户端
 public class Create_Session_Sample_fluent {
     public static void main(String[] args) throws Exception{
+    	//创建一个重试策略，初始sleep时间=1000，最大重试次数=3
         RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000, 3);
+      //创建客户端
         CuratorFramework client =
         CuratorFrameworkFactory.builder()
                              .connectString("domain1.book.zookeeper:2181")

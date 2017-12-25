@@ -14,7 +14,9 @@ public class Recipes_Lock {
     static CuratorFramework client = CuratorFrameworkFactory.builder()
             .connectString("domain1.book.zookeeper:2181")
             .retryPolicy(new ExponentialBackoffRetry(1000, 3)).build();
+    
 	public static void main(String[] args) throws Exception {
+		//启动会话
 		client.start();
 		final InterProcessMutex lock = new InterProcessMutex(client,lock_path);
 		final CountDownLatch down = new CountDownLatch(1);
@@ -23,12 +25,14 @@ public class Recipes_Lock {
 				public void run() {
 					try {
 						down.await();
+						//获得锁
 						lock.acquire();
 					} catch ( Exception e ) {}
 					SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss|SSS");
 					String orderNo = sdf.format(new Date());
 					System.out.println("生成的订单号是 : "+orderNo);
 					try {
+						//释放锁
 						lock.release();
 					} catch ( Exception e ) {}
 				}

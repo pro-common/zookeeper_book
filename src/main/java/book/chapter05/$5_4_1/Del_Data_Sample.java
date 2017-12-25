@@ -9,6 +9,7 @@ public class Del_Data_Sample {
     	ZkClient zkClient = new ZkClient("domain1.book.zookeeper:2181", 2000);
         zkClient.createPersistent(path, "");
         zkClient.createPersistent(path+"/c1", "");
+        //逐层遍历删除节点
         zkClient.deleteRecursive(path);
     }
 }
