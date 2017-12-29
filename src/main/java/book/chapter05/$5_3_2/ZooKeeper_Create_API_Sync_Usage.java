@@ -11,9 +11,12 @@ import org.apache.zookeeper.ZooKeeper;
 //ZooKeeper API创建节点，使用同步(sync)接口。
 public class ZooKeeper_Create_API_Sync_Usage implements Watcher {
 
+	/*一个同步辅助类，在完成一组正在其他线程中执行的操作之前，它允许一个或多个线程一直等待。
+	调用 countDown() 的线程打开入口前，所有调用 await 的线程都一直在入口处等待。*/
     private static CountDownLatch connectedSemaphore = new CountDownLatch(1);
 
     public static void main(String[] args) throws Exception{
+    	//创建会话
         ZooKeeper zookeeper = new ZooKeeper("domain1.book.zookeeper:2181", 
 				5000, //
 				new ZooKeeper_Create_API_Sync_Usage());
@@ -32,6 +35,11 @@ public class ZooKeeper_Create_API_Sync_Usage implements Watcher {
         System.out.println("Success create znode: " + path2);
     }
     
+    /**
+     * 该类实现 Watcher 接口，重写了 process 方法，该方法负责处理来自 Zookeeper
+     * 服务端的 Watcher 通知，在收到服务端发来的 SyncConnected 事件之后，解除
+     * 主程序在 CountDownLatch 上的等待阻塞。至此，客户端会话创建为完毕。
+     */
     @Override
     public void process(WatchedEvent event) {
         if (KeeperState.SyncConnected == event.getState()) {

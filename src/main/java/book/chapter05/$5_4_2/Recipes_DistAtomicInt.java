@@ -19,7 +19,7 @@ public class Recipes_DistAtomicInt {
 		DistributedAtomicInteger atomicInteger = 
 		new DistributedAtomicInteger( client, distatomicint_path, 
 									new RetryNTimes( 3, 1000 ) );
-		AtomicValue<Integer> rc = atomicInteger.add( 8 );
-		System.out.println( "Result: " + rc.succeeded() );
+		AtomicValue<Integer> rc = atomicInteger.add( 1 );
+		System.out.println( "Result: " + rc.succeeded() + "\t" + rc.preValue() + "\t" + rc.postValue() );
 	}
 }

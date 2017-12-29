@@ -20,19 +20,19 @@ public class Recipes_Lock {
 		client.start();
 		final InterProcessMutex lock = new InterProcessMutex(client,lock_path);
 		final CountDownLatch down = new CountDownLatch(1);
-		for(int i = 0; i < 30; i++){
+		for(int i = 0; i < 10; i++){
 			new Thread(new Runnable() {
 				public void run() {
 					try {
 						down.await();
-						//获得锁
+						//分布式锁的获取
 						lock.acquire();
 					} catch ( Exception e ) {}
 					SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss|SSS");
 					String orderNo = sdf.format(new Date());
 					System.out.println("生成的订单号是 : "+orderNo);
 					try {
-						//释放锁
+						//分布式锁的释放
 						lock.release();
 					} catch ( Exception e ) {}
 				}

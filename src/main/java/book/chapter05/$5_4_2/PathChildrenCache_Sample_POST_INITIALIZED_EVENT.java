@@ -15,8 +15,10 @@ public class PathChildrenCache_Sample_POST_INITIALIZED_EVENT {
             .retryPolicy(new ExponentialBackoffRetry(1000, 3))
             .sessionTimeoutMs(5000)
             .build();
+    
 	public static void main(String[] args) throws Exception {
 		client.start();
+		
 		PathChildrenCache cache = new PathChildrenCache(client, path, true);
 		cache.start(StartMode.NORMAL);
 		cache.getListenable().addListener(new PathChildrenCacheListener() {

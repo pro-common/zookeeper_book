@@ -16,8 +16,10 @@ public class PathChildrenCache_Sample_NoCacheData {
             .retryPolicy(new ExponentialBackoffRetry(1000, 3))
             .sessionTimeoutMs(5000)
             .build();
+    
 	public static void main(String[] args) throws Exception {
 		client.start();
+		
 		PathChildrenCache cache = new PathChildrenCache(client, path, true);
 		cache.start(StartMode.POST_INITIALIZED_EVENT);
 		cache.getListenable().addListener(new PathChildrenCacheListener() {

@@ -24,6 +24,7 @@ public class PathChildrenCache_Sample_ExecutorService {
 	public static void main(String[] args) throws Exception {
 		client.start();
 		System.out.println( Thread.currentThread().getName() );
+		
 		PathChildrenCache cache = new PathChildrenCache(client, path,true,false,tp);
 		cache.start(StartMode.NORMAL);
 		cache.getListenable().addListener(new PathChildrenCacheListener() {
