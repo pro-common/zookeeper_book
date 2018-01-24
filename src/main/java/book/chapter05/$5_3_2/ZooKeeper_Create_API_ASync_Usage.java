@@ -21,15 +21,18 @@ public class ZooKeeper_Create_API_ASync_Usage implements Watcher {
 				5000, //
 				new ZooKeeper_Create_API_ASync_Usage());
 	 connectedSemaphore.await();
-	    
+	 
+	 //临时节点-EPHEMERAL
 	 zookeeper.create("/zk-test-ephemeral-", "".getBytes(), 
 	    		Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL, 
 	    		new IStringCallback(), "I am context.");
-	    
+	 
+	 //临时节点-EPHEMERAL
 	 zookeeper.create("/zk-test-ephemeral-", "".getBytes(), 
 	    		Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL, 
 	    		new IStringCallback(), "I am context.");
-	    
+	 
+	 //临时顺序节点-EPHEMERAL_SEQUENTIAL
 	 zookeeper.create("/zk-test-ephemeral-", "".getBytes(), 
 	    		Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL, 
 	    		new IStringCallback(), "I am context.");
